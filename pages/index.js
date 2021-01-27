@@ -73,7 +73,6 @@ const MyFunction = (props) => {
 };
 export default withStyles(
   (theme) => ({
-    //   ...(theme)
     ...ThemeDistributor(theme),
   }),
   { withTheme: true }
