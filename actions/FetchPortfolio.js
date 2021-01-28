@@ -11,3 +11,14 @@ export const getPortfolioShownInHome = async ({ context }) => {
 
   return data;
 };
+
+export const getAllPortfolio = async ({ context }) => {
+  const { publicRuntimeConfig } = getConfig();
+
+  const response = await fetch(
+    `${publicRuntimeConfig.ROOT_API_URL}/portfolios`
+  );
+  const data = await response.json();
+
+  return data;
+};

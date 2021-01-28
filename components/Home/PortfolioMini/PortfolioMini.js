@@ -66,6 +66,7 @@ const PortfolioMini = (props) => {
             maxHeight={700}
             display="flex"
             alignItems="center"
+            justifyContent="space-between"
             style={{
               overflow: "auto",
               scrollDirection: "horizontal",

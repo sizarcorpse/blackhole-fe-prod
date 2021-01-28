@@ -8,7 +8,7 @@
 // #contexts :
 
 // #hooks :
-import { getPortfolioShownInHome } from "actions/FetchPortfolio";
+import { getAllPortfolio } from "actions/FetchPortfolio";
 
 // #components :
 import { PortfolioMini } from "components/Home";
@@ -30,9 +30,9 @@ import { Parallax, Background } from "react-parallax";
 // #serverSideProps :
 
 export async function getServerSideProps(context) {
-  const homePortfolio = await getPortfolioShownInHome(context);
+  const portfolios = await getAllPortfolio(context);
 
-  return { props: { homePortfolio } };
+  return { props: { portfolios } };
 }
 
 const useStyles = makeStyles({
@@ -44,10 +44,9 @@ const useStyles = makeStyles({
   mainContainer: { BackgroundColor: "#000000" },
 });
 
-const Home = (props) => {
-  const { classes, homePortfolio } = props;
-  // const { currentUser } = useAuth();
-  // const { publicRuntimeConfig } = getConfig();
+const Portfolio = (props) => {
+  const { classes, portfolios } = props;
+
   const localClasses = useStyles();
 
   return (
@@ -64,7 +63,7 @@ const Home = (props) => {
 
       <Grid container className={localClasses.mainContainer}>
         <Grid item xs={12} xl={12}>
-          <PortfolioMini homePortfolio={homePortfolio} />
+          {/* <PortfolioMini homePortfolio={homePortfolio} /> */}
           <Box height={500} />
         </Grid>
       </Grid>
@@ -76,4 +75,4 @@ export default withStyles(
     ...ThemeDistributor(theme),
   }),
   { withTheme: true }
-)(Home);
+)(Portfolio);

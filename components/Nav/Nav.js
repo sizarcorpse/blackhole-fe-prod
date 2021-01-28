@@ -1,7 +1,7 @@
 // #next :
 // import getConfig from 'next/config';
 // import {useRouter} from 'next/router';
-// import Link from 'next/link';
+import Link from "next/link";
 // import Image from 'next/image';
 // import useSWR, { trigger, mutate } from 'swr';
 // #contexts :
@@ -52,11 +52,11 @@ const Nav = (props) => {
           <Toolbar>
             <Grid container>
               <Grid item xl={2} lg={2} md={1} sm={false} xs={false} />
-              <Grid item xl={8} lg={2} md={10} sm={12} xs={12}>
+              <Grid item xl={8} lg={8} md={10} sm={12} xs={12}>
                 <Box
                   aria-label="main-nav-area"
                   display="flex"
-                  width="100%"
+                  width={{ lg: "100%" }}
                   alignItems="center"
                   flexDirection={
                     width === "sm" || width === "xs" ? "column" : "row"
@@ -91,24 +91,29 @@ const Nav = (props) => {
                     width={
                       width === "sm" || width === "xs" ? "100%" : undefined
                     }
+                    display="flex"
+                    justifyContent="flex-end"
                   >
                     {width !== "xs" && width !== "sm" ? (
                       <Box
                         aria-label="navigation-area"
                         display="flex"
                         alignItems="center"
+                        width="100%"
                       >
                         {navigation.main.map((nav, i) => (
-                          <Box aria-label="nav-item" key={i} mx={2}>
-                            <SCTypography
-                              variant="h3"
-                              fontSize={18}
-                              color="white"
-                              fontWeight={500}
-                            >
-                              {nav.name}
-                            </SCTypography>
-                          </Box>
+                          <Link href={`/${nav.slug}`} key={i}>
+                            <Box aria-label="nav-item" mx={2}>
+                              <SCTypography
+                                variant="h3"
+                                fontSize={18}
+                                color="white"
+                                fontWeight={500}
+                              >
+                                {nav.name}
+                              </SCTypography>
+                            </Box>
+                          </Link>
                         ))}
                       </Box>
                     ) : (
