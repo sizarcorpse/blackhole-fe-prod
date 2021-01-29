@@ -102,13 +102,17 @@ const Nav = (props) => {
                         width="100%"
                       >
                         {navigation.main.map((nav, i) => (
-                          <Link href={`/${nav.slug}`} key={i}>
-                            <Box aria-label="nav-item" mx={2}>
+                          <Link href={`${nav.url}`} key={i}>
+                            <Box
+                              aria-label="nav-item"
+                              mx={2}
+                              style={{ cursor: "pointer" }}
+                            >
                               <SCTypography
                                 variant="h3"
                                 fontSize={18}
                                 color="white"
-                                fontWeight={500}
+                                fontWeight={400}
                               >
                                 {nav.name}
                               </SCTypography>

@@ -5,17 +5,23 @@
 import Image from "next/image";
 // import useSWR, { trigger, mutate } from 'swr';
 // #contexts :
-// import { useAuth } from 'contexts/AuthContext';
+
 // #hooks :
 import { MakeUrls } from "utils/MakeUrls";
 // #components :
 import { SCTypography } from "components/UI";
-import PortfolioMiniCard from "./PortfolioMiniCard";
+import { PortfolioCard } from "components/PortfolioCard";
 // #validations :
 
 // #material-ui :
 import { ThemeDistributor } from "styles/ThemeDistributor";
-import { withStyles, makeStyles, Grid, Box } from "@material-ui/core";
+import {
+  withStyles,
+  makeStyles,
+  Grid,
+  Box,
+  Typography,
+} from "@material-ui/core";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 // #other :
 
@@ -25,8 +31,7 @@ const useStyles = makeStyles({
 
 const PortfolioMini = (props) => {
   const { classes, homePortfolio: portfolios } = props;
-  // const { currentUser } = useAuth();
-  // const { publicRuntimeConfig } = getConfig();
+
   const localClasses = useStyles();
 
   return (
@@ -48,7 +53,7 @@ const PortfolioMini = (props) => {
                 color="white"
                 fontVariant="small-caps"
                 fontWeight={700}
-                fontSize={30}
+                fontSize={50}
               >
                 Recent Works
               </SCTypography>
@@ -73,7 +78,7 @@ const PortfolioMini = (props) => {
             }}
           >
             {portfolios.map((portfolio, i) => (
-              <PortfolioMiniCard portfolio={portfolio} key={i} />
+              <PortfolioCard portfolio={portfolio} key={i} size={"large"} />
             ))}
           </Box>
         </Box>

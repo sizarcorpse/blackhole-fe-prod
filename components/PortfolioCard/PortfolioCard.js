@@ -4,9 +4,9 @@ import { useState } from "react";
 // import {useRouter} from 'next/router';
 // import Link from 'next/link';
 import Image from "next/image";
-// import useSWR, { trigger, mutate } from 'swr';
+
 // #contexts :
-// import { useAuth } from 'contexts/AuthContext';
+
 // #hooks :
 import { MakeUrls } from "utils/MakeUrls";
 // #components :
@@ -44,26 +44,33 @@ const useStyles = makeStyles({
   },
 });
 
-const PortfolioMiniCard = (props) => {
-  const { classes, portfolio } = props;
+const PortfolioCard = (props) => {
+  const { classes, portfolio, size } = props;
   const localClasses = useStyles();
   const [zoom, setZoom] = useState(false);
 
+  let baseHeight = size === "large" ? 600 : size === "small" ? 400 : 600;
+  let baseWidth = size === "large" ? 480 : size === "small" ? 320 : 480;
+  let baseIconHeight = size === "large" ? 65 : size === "small" ? 55 : 65;
+  let baseIconWidth = size === "large" ? 65 : size === "small" ? 55 : 65;
+  let baseOutline =
+    size === "large" ? "-10px" : size === "small" ? "-5px" : "-10px";
+
   const photoOptionProps = {
     base: {
-      width: 480,
-      height: 600,
+      width: baseWidth,
+      height: baseHeight,
       outline: "1.5px solid #ffffff",
-      outlineOffset: "-10px",
+      outlineOffset: baseOutline,
       position: "absolute",
       top: 0,
       opacity: 0,
     },
     hoverOption: {
-      width: 480,
-      height: 600,
+      width: baseWidth,
+      height: baseHeight,
       outline: "1.5px solid #ffffff",
-      outlineOffset: "-10px",
+      outlineOffset: baseOutline,
       opacity: 1,
       position: "absolute",
       top: 0,
@@ -71,12 +78,12 @@ const PortfolioMiniCard = (props) => {
   };
   const iconProps = {
     base: {
-      height: 65,
-      width: 65,
+      height: baseIconHeight,
+      width: baseIconWidth,
     },
     bounce: {
-      height: 65,
-      width: 65,
+      height: baseIconHeight,
+      width: baseIconWidth,
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -86,13 +93,13 @@ const PortfolioMiniCard = (props) => {
       cursor: "pointer",
     },
     Hover: {
-      height: 65,
-      width: 65,
+      height: baseIconHeight,
+      width: baseIconWidth,
       backgroundColor: "#d1d0d0",
     },
   };
   const zoomProps = {
-    base: { scale: 1.1, height: 600, width: 480 },
+    base: { scale: 1.1, height: baseHeight, width: baseWidth },
     zoomIn: {
       scale: 1,
     },
@@ -110,8 +117,8 @@ const PortfolioMiniCard = (props) => {
 
   return (
     <Box
-      height={600}
-      minWidth={480}
+      height={baseHeight}
+      minWidth={baseWidth}
       className={localClasses.root}
       onMouseEnter={() => setZoom(true)}
       onMouseLeave={() => setZoom(false)}
@@ -122,8 +129,8 @@ const PortfolioMiniCard = (props) => {
       >
         <Image
           src={MakeUrls(portfolio.photo)}
-          width={480}
-          height={600}
+          width={baseWidth}
+          height={baseHeight}
           objectFit="cover"
         />
       </motion.div>
@@ -177,4 +184,4 @@ export default withStyles(
     ...ThemeDistributor(theme),
   }),
   { withTheme: true }
-)(PortfolioMiniCard);
+)(PortfolioCard);

@@ -11,7 +11,7 @@
 import { getAllPortfolio } from "actions/FetchPortfolio";
 
 // #components :
-import { PortfolioMini } from "components/Home";
+import { Portfolio } from "components/Portfolio";
 // #validations :
 
 // #material-ui :
@@ -44,7 +44,7 @@ const useStyles = makeStyles({
   mainContainer: { BackgroundColor: "#000000" },
 });
 
-const Portfolio = (props) => {
+const PortfolioPage = (props) => {
   const { classes, portfolios } = props;
 
   const localClasses = useStyles();
@@ -63,7 +63,9 @@ const Portfolio = (props) => {
 
       <Grid container className={localClasses.mainContainer}>
         <Grid item xs={12} xl={12}>
-          {/* <PortfolioMini homePortfolio={homePortfolio} /> */}
+          <Box width="100%" display="flex">
+            <Portfolio portfolios={portfolios} />
+          </Box>
           <Box height={500} />
         </Grid>
       </Grid>
@@ -75,4 +77,4 @@ export default withStyles(
     ...ThemeDistributor(theme),
   }),
   { withTheme: true }
-)(Portfolio);
+)(PortfolioPage);
