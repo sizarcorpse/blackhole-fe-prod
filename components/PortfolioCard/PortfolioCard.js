@@ -60,6 +60,7 @@ const PortfolioCard = (props) => {
     base: {
       width: baseWidth,
       height: baseHeight,
+
       outline: "1.5px solid #ffffff",
       outlineOffset: baseOutline,
       position: "absolute",

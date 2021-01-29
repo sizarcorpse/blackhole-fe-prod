@@ -95,7 +95,10 @@ const PhotoView = (props) => {
               />
             </Box>
             <Box aria-label="tags" mb={2} display="flex">
-              <PhotoTags tags={portfolio.tags} />
+              <PhotoTags
+                tags={portfolio.tags}
+                handlePhotoViewClose={handlePhotoViewClose}
+              />
             </Box>
           </Box>
         </Grid>

@@ -1,28 +1,22 @@
 // #next :
-//import Head from "next/head";
 // import getConfig from 'next/config';
 // import {useRouter} from 'next/router';
 // import Link from 'next/link';
 // import Image from 'next/image';
 // import useSWR, { trigger, mutate } from 'swr';
 // #contexts :
-
+// import { useAuth } from 'contexts/AuthContext';
 // #hooks :
-import { getAllPortfolio } from "actions/FetchPortfolio";
-
+import { MakeUrls } from "utils/MakeUrls";
 // #components :
-import { Portfolio } from "components/Portfolio";
+import { getPortfolioByTag } from "actions/FetchPortfolio";
+import { SCTypography } from "components/UI";
+import { Tag } from "components/Tag";
 // #validations :
 
 // #material-ui :
 import { ThemeDistributor } from "styles/ThemeDistributor";
-import {
-  withStyles,
-  makeStyles,
-  Box,
-  Grid,
-  Typography,
-} from "@material-ui/core";
+import { withStyles, makeStyles, Box, Grid } from "@material-ui/core";
 
 // #other :
 import { Parallax, Background } from "react-parallax";
@@ -30,11 +24,20 @@ import { Parallax, Background } from "react-parallax";
 // #serverSideProps :
 
 export async function getServerSideProps(context) {
-  const page = 1;
-  const limit = 4;
-  const portfolios = await getAllPortfolio({ context, page, limit });
+  const portfolios = await getPortfolioByTag({ context });
 
-  return { props: { portfolios } };
+  return {
+    props: {
+      // portfolios: portfolios.portfolios,
+      portfolios: portfolios,
+      // details: {
+      //   name: portfolios.name,
+      //   slug: portfolios.slug,
+      //   cover: portfolios.cover,
+      //   description: portfolios.desc,
+      // },
+    },
+  };
 }
 
 const useStyles = makeStyles({
@@ -45,28 +48,26 @@ const useStyles = makeStyles({
   },
   mainContainer: { BackgroundColor: "#000000" },
 });
-
-const PortfolioPage = (props) => {
+const Tags = (props) => {
   const { classes, portfolios } = props;
-
   const localClasses = useStyles();
 
   return (
     <Grid container className={localClasses.root}>
-      <Grid item xs={12} xl={12} aria-label="background-cover">
-        <Parallax bgImage={`wallhaven-28k9zx.png`} strength={500}>
+      {/* <Grid item xs={12} xl={12} aria-label="background-cover">
+        <Parallax bgImage={MakeUrls(details.cover)} strength={500}>
           <Box
             height={900}
             width="100%"
             className={localClasses.parallaxBackground}
           ></Box>
         </Parallax>
-      </Grid>
+      </Grid> */}
 
       <Grid container className={localClasses.mainContainer}>
         <Grid item xs={12} xl={12}>
           <Box width="100%" display="flex">
-            <Portfolio portfolios={portfolios} />
+            <Tag portfolios={portfolios} />
           </Box>
           <Box height={500} />
         </Grid>
@@ -74,9 +75,10 @@ const PortfolioPage = (props) => {
     </Grid>
   );
 };
+
 export default withStyles(
   (theme) => ({
     ...ThemeDistributor(theme),
   }),
   { withTheme: true }
-)(PortfolioPage);
+)(Tags);

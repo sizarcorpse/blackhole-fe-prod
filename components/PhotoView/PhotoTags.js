@@ -1,7 +1,7 @@
 // #next :
 // import getConfig from 'next/config';
 // import {useRouter} from 'next/router';
-// import Link from 'next/link';
+import Link from "next/link";
 // import Image from 'next/image';
 // import useSWR, { trigger, mutate } from 'swr';
 // #contexts :
@@ -33,7 +33,7 @@ const useStyles = makeStyles({
 });
 
 const PhotoTags = (props) => {
-  const { classes, tags } = props;
+  const { classes, tags, handlePhotoViewClose } = props;
   const localClasses = useStyles();
 
   const hoverProps = {
@@ -42,17 +42,23 @@ const PhotoTags = (props) => {
   };
 
   return tags.map((tag, i) => (
-    <Box key={i}>
-      <motion.div
-        aria-label="tag-name"
-        className={localClasses.root}
-        initial="base"
-        whileHover="hover"
-        variants={hoverProps}
+    <Link href={`/portfolio/tags/${tag.slug}?page=1`} key={i}>
+      <Box
+        onClick={() => {
+          handlePhotoViewClose(false);
+        }}
       >
-        <SCTypography variant="h2">{tag.name}</SCTypography>
-      </motion.div>
-    </Box>
+        <motion.div
+          aria-label="tag-name"
+          className={localClasses.root}
+          initial="base"
+          whileHover="hover"
+          variants={hoverProps}
+        >
+          <SCTypography variant="h2">{tag.name}</SCTypography>
+        </motion.div>
+      </Box>
+    </Link>
   ));
 };
 export default withStyles(

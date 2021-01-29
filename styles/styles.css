@@ -8,6 +8,7 @@
 }
 .my-masonry-grid_column {
   background-clip: padding-box;
+  min-width: 480px;
 }
 
 /* Style your items */
