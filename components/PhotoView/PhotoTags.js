@@ -42,7 +42,7 @@ const PhotoTags = (props) => {
   };
 
   return tags.map((tag, i) => (
-    <Link href={`/portfolio/tags/${tag.slug}?page=1`} key={i}>
+    <Link href={`/portfolio/tags/${tag.slug}`} key={i}>
       <Box
         onClick={() => {
           handlePhotoViewClose(false);

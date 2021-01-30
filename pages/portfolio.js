@@ -8,10 +8,11 @@
 // #contexts :
 
 // #hooks :
-import { getAllPortfolio } from "actions/FetchPortfolio";
+import { getAllPortfolio, getTagList } from "actions/FetchPortfolio";
 
 // #components :
 import { Portfolio } from "components/Portfolio";
+import { TagList } from "components/TagList";
 // #validations :
 
 // #material-ui :
@@ -32,9 +33,9 @@ import { Parallax, Background } from "react-parallax";
 export async function getServerSideProps(context) {
   const page = 1;
   const limit = 4;
-  const portfolios = await getAllPortfolio({ context, page, limit });
-
-  return { props: { portfolios } };
+  const response = await getAllPortfolio({ context, page, limit });
+  const responseList = await getTagList({ context });
+  return { props: { portfolios: response, tagList: responseList } };
 }
 
 const useStyles = makeStyles({
@@ -47,7 +48,7 @@ const useStyles = makeStyles({
 });
 
 const PortfolioPage = (props) => {
-  const { classes, portfolios } = props;
+  const { classes, portfolios, tagList } = props;
 
   const localClasses = useStyles();
 
@@ -64,6 +65,17 @@ const PortfolioPage = (props) => {
       </Grid>
 
       <Grid container className={localClasses.mainContainer}>
+        <Grid item xs={12} xl={12}>
+          <Box
+            width="100%"
+            display="flex"
+            justifyContent="center"
+            mb={6}
+            flexWrap="wrap"
+          >
+            <TagList tagList={tagList} />
+          </Box>
+        </Grid>
         <Grid item xs={12} xl={12}>
           <Box width="100%" display="flex">
             <Portfolio portfolios={portfolios} />

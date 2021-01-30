@@ -12,7 +12,7 @@ import { SCTypography } from "components/UI";
 import { MakeUrls } from "utils/MakeUrls";
 import PhotoTags from "./PhotoTags";
 import PhotoDetails from "./PhotoDetails";
-
+import CreateReview from "./CreateReview";
 // #validations :
 
 // #material-ui :
@@ -53,6 +53,7 @@ const PhotoView = (props) => {
             display="flex"
             justifyContent="flex-end"
             border={1}
+            px={3}
           >
             <IconButton
               color="primary"
@@ -88,17 +89,32 @@ const PhotoView = (props) => {
         </Grid>
         <Grid item xl={4} lg={4} md={5} sm={12} xs={12}>
           <Box aria-label="details" width="100%" px={3}>
-            <Box aria-label="tags" mb={2} display="flex">
+            <Box
+              aria-label="tags"
+              mb={2}
+              display="flex"
+              px={3}
+              style={{ background: "#030305" }}
+            >
               <PhotoDetails
                 caption={portfolio.caption}
                 description={portfolio.description}
               />
             </Box>
-            <Box aria-label="tags" mb={2} display="flex">
+            <Box
+              aria-label="tags"
+              mb={2}
+              display="flex"
+              px={3}
+              style={{ background: "#030305" }}
+            >
               <PhotoTags
                 tags={portfolio.tags}
                 handlePhotoViewClose={handlePhotoViewClose}
               />
+            </Box>
+            <Box aria-label="create-comment" mb={2} display="flex">
+              <CreateReview />
             </Box>
           </Box>
         </Grid>
