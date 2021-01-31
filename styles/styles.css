@@ -10,9 +10,16 @@
   background-clip: padding-box;
   min-width: 480px;
 }
+.my-masonry-grid_column_blog {
+  background-clip: padding-box;
+  min-width: 420px;
+}
 
 /* Style your items */
 .my-masonry-grid_column > div {
+  margin-bottom: 0px;
+}
+.my-masonry-grid_column_blog > div {
   margin-bottom: 0px;
 }
 

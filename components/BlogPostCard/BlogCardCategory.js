@@ -1,21 +1,16 @@
 // #next :
-// import getConfig from 'next/config';
-// import {useRouter} from 'next/router';
 import Link from "next/link";
-// import Image from 'next/image';
-// import useSWR, { trigger, mutate } from 'swr';
 // #contexts :
-// import { useAuth } from 'contexts/AuthContext';
+
 // #hooks :
 
 // #components :
-
 import { SCTypography } from "components/UI";
 // #validations :
 
 // #material-ui :
 import { ThemeDistributor } from "styles/ThemeDistributor";
-import { withStyles, makeStyles, Box } from "@material-ui/core";
+import { withStyles, Box, makeStyles } from "@material-ui/core";
 
 // #other :
 import { motion } from "framer-motion";
@@ -33,36 +28,19 @@ const useStyles = makeStyles({
   },
 });
 
-const TagList = (props) => {
-  const { classes, tagList } = props;
-  // const { currentUser } = useAuth();
-  // const { publicRuntimeConfig } = getConfig();
+const BlogCardCategory = (props) => {
+  const { classes, categories } = props;
   const localClasses = useStyles();
-
   const hoverProps = {
     base: { color: "#f8f8f8" },
     hover: { backgroundColor: "#f8f8f8", color: "#000000" },
   };
 
   return (
-    <>
-      <Link href={`/portfolio/`}>
-        <Box mx={2}>
-          <motion.div
-            aria-label="tag-name"
-            className={localClasses.root}
-            initial="base"
-            whileHover="hover"
-            variants={hoverProps}
-          >
-            <SCTypography variant="h2">Portfolio</SCTypography>
-          </motion.div>
-        </Box>
-      </Link>
-
-      {tagList.map((tag, i) => (
-        <Link href={`/portfolio/tags/${tag.slug}`} key={i}>
-          <Box mx={2}>
+    <Box display="flex" justifyContent="center" my={3}>
+      {categories.map((category, i) => (
+        <Link href="#" key={i}>
+          <Box mr={2}>
             <motion.div
               aria-label="tag-name"
               className={localClasses.root}
@@ -70,18 +48,19 @@ const TagList = (props) => {
               whileHover="hover"
               variants={hoverProps}
             >
-              <SCTypography variant="h2">{tag.name}</SCTypography>
+              <SCTypography variant="h2" fontWeight={500}>
+                {category.name}
+              </SCTypography>
             </motion.div>
           </Box>
         </Link>
       ))}
-    </>
+    </Box>
   );
 };
-
 export default withStyles(
   (theme) => ({
     ...ThemeDistributor(theme),
   }),
   { withTheme: true }
-)(TagList);
+)(BlogCardCategory);

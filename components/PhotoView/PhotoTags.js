@@ -41,25 +41,29 @@ const PhotoTags = (props) => {
     hover: { backgroundColor: "#000000", color: "#f8f8f8" },
   };
 
-  return tags.map((tag, i) => (
-    <Link href={`/portfolio/tags/${tag.slug}`} key={i}>
-      <Box
-        onClick={() => {
-          handlePhotoViewClose(false);
-        }}
-      >
-        <motion.div
-          aria-label="tag-name"
-          className={localClasses.root}
-          initial="base"
-          whileHover="hover"
-          variants={hoverProps}
-        >
-          <SCTypography variant="h2">{tag.name}</SCTypography>
-        </motion.div>
-      </Box>
-    </Link>
-  ));
+  return (
+    <Box display="flex" flexWrap="wrap">
+      {tags.map((tag, i) => (
+        <Link href={`/portfolio/tags/${tag.slug}`} key={i}>
+          <Box
+            onClick={() => {
+              handlePhotoViewClose(false);
+            }}
+          >
+            <motion.div
+              aria-label="tag-name"
+              className={localClasses.root}
+              initial="base"
+              whileHover="hover"
+              variants={hoverProps}
+            >
+              <SCTypography variant="h2">{tag.name}</SCTypography>
+            </motion.div>
+          </Box>
+        </Link>
+      ))}
+    </Box>
+  );
 };
 export default withStyles(
   (theme) => ({

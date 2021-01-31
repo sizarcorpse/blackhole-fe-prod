@@ -1,17 +1,14 @@
 // #next :
-
+// import getConfig from 'next/config';
 // import {useRouter} from 'next/router';
 // import Link from 'next/link';
 // import Image from 'next/image';
-
+// import useSWR, { trigger, mutate } from 'swr';
 // #contexts :
-
 // #hooks :
-import { MakeUrls } from "utils/MakeUrls";
+import { getAllBlogPosts } from "actions/FetchBlog";
 // #components :
-import { getTagDetails, getTagList } from "actions/FetchPortfolio";
-import { Tag } from "components/Tag";
-import { TagList } from "components/TagList";
+import { Blog } from "components/Blog";
 // #validations :
 
 // #material-ui :
@@ -21,18 +18,13 @@ import { withStyles, makeStyles, Box, Grid } from "@material-ui/core";
 // #other :
 import { Parallax, Background } from "react-parallax";
 
-// #serverSideProps :
-
 export async function getServerSideProps(context) {
-  const response = await getTagDetails({ context });
-  const responseList = await getTagList({ context });
+  const page = 1;
+  const limit = 1;
+  const response = await getAllBlogPosts({ context, page, limit });
+  const responseList = await getCategoryList({ context });
 
-  return {
-    props: {
-      tagDetails: response,
-      tagList: responseList,
-    },
-  };
+  return { props: { blogPosts: response, categoryList: responseList } };
 }
 
 const useStyles = makeStyles({
@@ -43,16 +35,17 @@ const useStyles = makeStyles({
   },
   mainContainer: { BackgroundColor: "#000000" },
 });
-const Tags = (props) => {
-  const { classes, tagDetails, tagList } = props;
+
+const BlogPage = (props) => {
+  const { classes, blogPosts, categoryList } = props;
   const localClasses = useStyles();
 
   return (
     <Grid container className={localClasses.root}>
       <Grid item xs={12} xl={12} aria-label="background-cover">
-        <Parallax bgImage={MakeUrls(tagDetails.cover)} strength={500}>
+        <Parallax bgImage={`wallhaven-28k9zx.png`} strength={500}>
           <Box
-            height={600}
+            height={900}
             width="100%"
             className={localClasses.parallaxBackground}
           ></Box>
@@ -60,31 +53,19 @@ const Tags = (props) => {
       </Grid>
 
       <Grid container className={localClasses.mainContainer}>
-        <Grid item xs={12} xl={12}>
-          <Box
-            width="100%"
-            display="flex"
-            justifyContent="center"
-            mb={6}
-            flexWrap="wrap"
-          >
-            <TagList tagList={tagList} />
-          </Box>
+        <Grid item xs={2} />
+        <Grid item xs={8}>
+          <Blog blogPosts={blogPosts} categoryList={categoryList} />
         </Grid>
-        <Grid item xs={12} xl={12}>
-          <Box width="100%" display="flex" minHeight="600">
-            <Tag tagDetails={tagDetails} />
-          </Box>
-          <Box height={500} />
-        </Grid>
+        <Grid item xs={2} />
       </Grid>
     </Grid>
   );
 };
-
 export default withStyles(
   (theme) => ({
+    //   ...(theme)
     ...ThemeDistributor(theme),
   }),
   { withTheme: true }
-)(Tags);
+)(BlogPage);

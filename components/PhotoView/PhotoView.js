@@ -13,6 +13,7 @@ import { MakeUrls } from "utils/MakeUrls";
 import PhotoTags from "./PhotoTags";
 import PhotoDetails from "./PhotoDetails";
 import CreateReview from "./CreateReview";
+import PhotoReviews from "./PhotoReviews";
 // #validations :
 
 // #material-ui :
@@ -88,7 +89,13 @@ const PhotoView = (props) => {
           </Box>
         </Grid>
         <Grid item xl={4} lg={4} md={5} sm={12} xs={12}>
-          <Box aria-label="details" width="100%" px={3}>
+          <Box
+            aria-label="details"
+            width="100%"
+            px={3}
+            display="flex"
+            flexDirection="column"
+          >
             <Box
               aria-label="tags"
               mb={2}
@@ -101,13 +108,7 @@ const PhotoView = (props) => {
                 description={portfolio.description}
               />
             </Box>
-            <Box
-              aria-label="tags"
-              mb={2}
-              display="flex"
-              px={3}
-              style={{ background: "#030305" }}
-            >
+            <Box aria-label="tags" mb={2} px={3} flexGrow={1}>
               <PhotoTags
                 tags={portfolio.tags}
                 handlePhotoViewClose={handlePhotoViewClose}
@@ -115,6 +116,9 @@ const PhotoView = (props) => {
             </Box>
             <Box aria-label="create-comment" mb={2} display="flex">
               <CreateReview />
+            </Box>
+            <Box aria-label="create-comment" mb={2} display="flex">
+              <PhotoReviews reviews={portfolio.reviews} />
             </Box>
           </Box>
         </Grid>
