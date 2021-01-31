@@ -1,17 +1,19 @@
+import { useState } from "react";
 // #next :
 import getConfig from "next/config";
-// import {useRouter} from 'next/router';
-// import Link from 'next/link';
-// import Image from 'next/image';
-import { useSWRInfinite } from "swr";
-// #contexts :
+import { useRouter } from "next/router";
 
+import useSWR, { useSWRInfinite } from "swr";
+
+// #contexts :
 // #hooks :
+
 import { FlexColumn2 } from "utils/FlexColumn";
 // #components :
-import { SCTypography } from "components/UI";
 import { BlogPostCard } from "components/BlogPostCard";
 import { CategoryList } from "components/CategoryList";
+import { SCTypography } from "components/UI";
+
 // #validations :
 
 // #material-ui :
@@ -19,35 +21,32 @@ import { ThemeDistributor } from "styles/ThemeDistributor";
 import {
   withStyles,
   makeStyles,
-  Grid,
   Box,
+  Grid,
   CircularProgress,
   Button,
 } from "@material-ui/core";
 import AutorenewIcon from "@material-ui/icons/Autorenew";
-
 // #other :
 import Masonry from "react-masonry-css";
 
-const useStyles = makeStyles({
-  root: {},
-});
-
-const Blog = (props) => {
-  const { classes, blogPosts, categoryList } = props;
+const Category = (props) => {
+  const { classes, categoryDetails, categoryList } = props;
   const { publicRuntimeConfig } = getConfig();
-  const localClasses = useStyles();
+  const [items, setItem] = useState(2);
+  const router = useRouter();
 
-  let items = 4;
+  // #handlers : Infinity Scroll
+  let category = router.query.slug;
+
   const { data, error, isValidating, mutate, size, setSize } = useSWRInfinite(
     (index) =>
-      `${publicRuntimeConfig.ROOT_API_URL}/blogs/page?_limit=${items}&_page=${
-        index + 1
-      }`,
+      `${
+        publicRuntimeConfig.ROOT_API_URL
+      }/categories/${category}/contents?_limit=${items}&_page=${index + 1}`,
 
     {
       revalidateOnFocus: false,
-      initialData: blogPosts,
     }
   );
   const concatPostsData = data ? [].concat(...data) : [];
@@ -94,6 +93,7 @@ const Blog = (props) => {
               </Masonry>
             </Box>
           </Grid>
+
           <Grid item xs={12}>
             <Box
               height={50}
@@ -130,4 +130,4 @@ export default withStyles(
     ...ThemeDistributor(theme),
   }),
   { withTheme: true }
-)(Blog);
+)(Category);

@@ -42,16 +42,20 @@ const BlogCardFooter = (props) => {
     >
       <Box aria-label="author" display="flex" alignItems="center" flexGrow={1}>
         <Avatar className={localClasses.avatar}>
-          <Image
-            src={MakeUrls(author.photo)}
-            height={40}
-            width={40}
-            objectFit="cover"
-          />
+          {!author || !author.photo ? (
+            "x"
+          ) : (
+            <Image
+              src={MakeUrls(author.photo)}
+              height={40}
+              width={40}
+              objectFit="cover"
+            />
+          )}
         </Avatar>
 
         <SCTypography variant="h2" fontSize={18} fontWeight={400} color="white">
-          {author.username}
+          {!author ? "Anonymous " : author.username}
         </SCTypography>
       </Box>
 
