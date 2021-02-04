@@ -16,12 +16,16 @@ export const ThemeDistributor = (theme) => ({
 
   try: {
     width: "100%",
-
+    padding: 24,
     "& img": {
       width: "100%",
       height: "auto",
       justifySelf: "center",
       textAlign: "center",
+    },
+    "& figure": {
+      width: "100%",
+      margin: "auto",
     },
     "& p": {
       fontSize: "15px",

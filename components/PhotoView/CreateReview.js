@@ -34,7 +34,7 @@ const useStyles = makeStyles({
   TextAreaLarge: {
     width: "100%",
     maxHeight: 400,
-    maxWidth: 545,
+    // maxWidth: 545,
     fontSize: 16,
     fontWeight: 400,
     lineHeight: 1.5,

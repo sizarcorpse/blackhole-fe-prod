@@ -1,34 +1,30 @@
-// #next :
-// import getConfig from 'next/config';
-// import {useRouter} from 'next/router';
-// import Link from 'next/link';
-// import Image from 'next/image';
-// import useSWR, { trigger, mutate } from 'swr';
-// #contexts :
-// import { useAuth } from 'contexts/AuthContext';
-// #hooks :
-
-// #components :
-
-// #validations :
-
 // #material-ui :
 import { ThemeDistributor } from "styles/ThemeDistributor";
-import { withStyles, makeStyles } from "@material-ui/core";
+import { withStyles, makeStyles, Grid, Box } from "@material-ui/core";
 
 // #other :
 
 const useStyles = makeStyles({
-  root: {},
+  root: { margin: "24px 0px" },
 });
 
-const BlogPo = (props) => {
-  const { classes } = props;
-  // const { currentUser } = useAuth();
-  // const { publicRuntimeConfig } = getConfig();
+const BlogPostView = (props) => {
+  const { classes, content } = props;
   const localClasses = useStyles();
 
-  return <> </>;
+  return (
+    <Grid container className={localClasses.root}>
+      <Grid item xs={12}>
+        <Box
+          aria-label="card-media"
+          dangerouslySetInnerHTML={{
+            __html: `${content}`,
+          }}
+          className={classes.try}
+        />
+      </Grid>
+    </Grid>
+  );
 };
 export default withStyles(
   (theme) => ({

@@ -30,9 +30,9 @@ export const getCategoryDetails = async ({ context }) => {
   return data;
 };
 
-export const getASingleBlogPost = async ({ context, slug }) => {
+export const getASingleBlogPost = async ({ context }) => {
   const { publicRuntimeConfig } = getConfig();
-
+  const slug = context.query.slug;
   const response = await fetch(
     `${publicRuntimeConfig.ROOT_API_URL}/blogs?slug=${slug}`
   );

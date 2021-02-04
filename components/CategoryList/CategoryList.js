@@ -28,7 +28,6 @@ const useStyles = makeStyles({
     alignItems: "center",
     padding: 8,
     marginRight: 8,
-    marginBottom: 8,
     cursor: "pointer",
   },
 });
@@ -48,7 +47,7 @@ const CategoryList = (props) => {
     <>
       {categoryList.map((category, i) => (
         <Link href={`/blog/categories/${category.slug}`} key={i}>
-          <Box mx={2}>
+          <Box mr={4}>
             <motion.div
               aria-label="category-name"
               className={localClasses.root}

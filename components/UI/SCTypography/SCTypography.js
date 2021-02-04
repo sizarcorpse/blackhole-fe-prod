@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     color: (props) => props.color ?? undefined,
 
     letterSpacing: (props) => props.letterSpacing ?? undefined,
-
+    lineHeight: (props) => props.lineHeight ?? undefined,
     wordSpacing: (props) => props.wordSpacing ?? undefined,
     wordBreak: (props) => props.wordBreak ?? undefined,
     wordWrap: (props) => props.wordWrap ?? undefined,
@@ -40,6 +40,7 @@ const SCTypography = (props) => {
     fontWeight,
     color,
     letterSpacing,
+    lineHeight,
     wordSpacing,
     wordBreak,
     wordWrap,
@@ -59,6 +60,7 @@ const SCTypography = (props) => {
     fontWeight,
     color,
     letterSpacing,
+    lineHeight,
     wordSpacing,
     wordBreak,
     wordWrap,
@@ -85,6 +87,7 @@ SCTypography.propTypes = {
   fontWeight: PropTypes.number,
   color: PropTypes.string,
   letterSpacing: PropTypes.number,
+  lineHeight: PropTypes.number,
   wordSpacing: PropTypes.number,
   wordBreak: PropTypes.string,
   wordWrap: PropTypes.string,
