@@ -12,6 +12,7 @@ import getConfig from "next/config";
 
 // #components :
 import { Nav } from "components/Nav";
+import { Footer } from "components/Footer";
 
 // #material-ui :
 import { ThemeProvider } from "@material-ui/core/styles";
@@ -36,7 +37,7 @@ Router.events.on("routeChangeError", () => {
   NProgress.done();
 });
 
-function MyApp({ Component, pageProps, navigation }) {
+function MyApp({ Component, pageProps, navigation, footer }) {
   return (
     <>
       <Head>
@@ -56,6 +57,7 @@ function MyApp({ Component, pageProps, navigation }) {
         >
           <Nav navigation={navigation} />
           <Component {...pageProps} />
+          <Footer footer={footer} />
         </SWRConfig>
       </ThemeProvider>
     </>
@@ -69,7 +71,9 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
   let pageProps = {};
 
   const res = await fetch(`${publicRuntimeConfig.ROOT_API_URL}/navigation`);
+  const res2 = await fetch(`${publicRuntimeConfig.ROOT_API_URL}/footer-page`);
   const navigation = await res.json();
+  const footer = await res2.json();
 
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx);
@@ -78,6 +82,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
   return {
     pageProps,
     navigation,
+    footer,
   };
 };
 MyApp.propTypes = {

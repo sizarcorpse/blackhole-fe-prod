@@ -23,6 +23,7 @@ import {
   Box,
   CircularProgress,
   Button,
+  withWidth,
 } from "@material-ui/core";
 import AutorenewIcon from "@material-ui/icons/Autorenew";
 
@@ -34,7 +35,7 @@ const useStyles = makeStyles({
 });
 
 const Blog = (props) => {
-  const { classes, blogPosts, categoryList } = props;
+  const { classes, width, blogPosts, categoryList, BlogSideBar } = props;
   const { publicRuntimeConfig } = getConfig();
   const localClasses = useStyles();
 
@@ -60,19 +61,19 @@ const Blog = (props) => {
     isEmpty || (data && data[data.length - 1]?.length < items);
 
   return (
-    <Grid container>
-      <Grid item xs={4}>
-        <SCTypography variant="h2" color="white">
-          SEARCH
-        </SCTypography>
+    <Grid container justify="flex-end">
+      <Grid item xl={4} lg={3} md={3} sm={12} xs={12}>
+        <Box width="100%">
+          <BlogSideBar />
+        </Box>
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xl={8} lg={9} md={9} sm={12} xs={12}>
         <Grid container>
           <Grid item xs={12}>
             <Box
               width="100%"
               display="flex"
-              justifyContent="center"
+              justifyContent={width === "xs" ? "space-around" : "center"}
               mb={6}
               flexWrap="wrap"
             >
@@ -80,7 +81,7 @@ const Blog = (props) => {
             </Box>
           </Grid>
           <Grid item xs={12}>
-            <Box width="100%">
+            <Box width="100%" display="flex" justifyContent="space-between">
               <Masonry
                 breakpointCols={FlexColumn2}
                 className="my-masonry-grid"
@@ -125,9 +126,11 @@ const Blog = (props) => {
     </Grid>
   );
 };
-export default withStyles(
-  (theme) => ({
-    ...ThemeDistributor(theme),
-  }),
-  { withTheme: true }
-)(Blog);
+export default withWidth()(
+  withStyles(
+    (theme) => ({
+      ...ThemeDistributor(theme),
+    }),
+    { withTheme: true }
+  )(Blog)
+);

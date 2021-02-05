@@ -23,7 +23,7 @@ import { withStyles, makeStyles, Box } from "@material-ui/core";
 // #other :
 
 const useStyles = makeStyles({
-  root: { border: "1px solid white", margin: 8 },
+  root: { border: "1px solid white", margin: 8, maxWidth: 420 },
 });
 
 const BlogPostCard = (props) => {

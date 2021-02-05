@@ -9,12 +9,12 @@
 // #hooks :
 
 // #components :
-
+import Search from "./Search";
 // #validations :
 
 // #material-ui :
 import { ThemeDistributor } from "styles/ThemeDistributor";
-import { withStyles, makeStyles } from "@material-ui/core";
+import { withStyles, makeStyles, Grid, Box } from "@material-ui/core";
 
 // #other :
 
@@ -28,7 +28,15 @@ const BlogSideBar = (props) => {
   // const { publicRuntimeConfig } = getConfig();
   const localClasses = useStyles();
 
-  return <> </>;
+  return (
+    <Grid container>
+      <Grid item xs={12}>
+        <Box px={3}>
+          <Search />
+        </Box>
+      </Grid>
+    </Grid>
+  );
 };
 export default withStyles(
   (theme) => ({

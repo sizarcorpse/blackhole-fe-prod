@@ -13,7 +13,7 @@ import { FlexColumn2 } from "utils/FlexColumn";
 import { BlogPostCard } from "components/BlogPostCard";
 import { CategoryList } from "components/CategoryList";
 import { SCTypography } from "components/UI";
-
+import { BlogSideBar } from "components/BlogSideBar";
 // #validations :
 
 // #material-ui :
@@ -61,9 +61,7 @@ const Category = (props) => {
   return (
     <Grid container>
       <Grid item xs={4}>
-        <SCTypography variant="h2" color="white">
-          SEARCH
-        </SCTypography>
+        <BlogSideBar />
       </Grid>
       <Grid item xs={8}>
         <Grid container>

@@ -9,7 +9,7 @@
 
 // #hooks :
 import { getAllPortfolio, getTagList } from "actions/FetchPortfolio";
-
+import { getPortfolioPage } from "actions/FetchPage";
 // #components :
 import { Portfolio } from "components/Portfolio";
 import { TagList } from "components/TagList";
@@ -27,15 +27,20 @@ import {
 
 // #other :
 import { Parallax, Background } from "react-parallax";
+import { MakeUrls } from "utils/MakeUrls";
 
 // #serverSideProps :
 
 export async function getServerSideProps(context) {
   const page = 1;
   const limit = 4;
+  const portfolioPage = await getPortfolioPage(context);
   const response = await getAllPortfolio({ context, page, limit });
   const responseList = await getTagList({ context });
-  return { props: { portfolios: response, tagList: responseList } };
+
+  return {
+    props: { portfolios: response, tagList: responseList, portfolioPage },
+  };
 }
 
 const useStyles = makeStyles({
@@ -48,14 +53,14 @@ const useStyles = makeStyles({
 });
 
 const PortfolioPage = (props) => {
-  const { classes, portfolios, tagList } = props;
+  const { classes, portfolios, tagList, portfolioPage } = props;
 
   const localClasses = useStyles();
 
   return (
     <Grid container className={localClasses.root}>
       <Grid item xs={12} xl={12} aria-label="background-cover">
-        <Parallax bgImage={`wallhaven-28k9zx.png`} strength={500}>
+        <Parallax bgImage={MakeUrls(portfolioPage.cover)} strength={500}>
           <Box
             height={900}
             width="100%"

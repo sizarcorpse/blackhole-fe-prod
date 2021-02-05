@@ -1,5 +1,5 @@
 // #next :
-//import Head from "next/head";
+// import Head from "next/head";
 // import getConfig from 'next/config';
 // import {useRouter} from 'next/router';
 // import Link from 'next/link';
@@ -9,7 +9,8 @@
 
 // #hooks :
 import { getPortfolioShownInHome } from "actions/FetchPortfolio";
-
+import { getHomePage } from "actions/FetchPage";
+import { MakeUrls } from "utils/MakeUrls";
 // #components :
 import { PortfolioMini } from "components/Home";
 // #validations :
@@ -31,8 +32,9 @@ import { Parallax, Background } from "react-parallax";
 
 export async function getServerSideProps(context) {
   const homePortfolio = await getPortfolioShownInHome(context);
+  const homePage = await getHomePage(context);
 
-  return { props: { homePortfolio } };
+  return { props: { homePortfolio, homePage } };
 }
 
 const useStyles = makeStyles({
@@ -45,7 +47,7 @@ const useStyles = makeStyles({
 });
 
 const Home = (props) => {
-  const { classes, homePortfolio } = props;
+  const { classes, homePortfolio, homePage } = props;
   // const { currentUser } = useAuth();
   // const { publicRuntimeConfig } = getConfig();
   const localClasses = useStyles();
@@ -53,7 +55,7 @@ const Home = (props) => {
   return (
     <Grid container className={localClasses.root}>
       <Grid item xs={12} xl={12} aria-label="background-cover">
-        <Parallax bgImage={`wallhaven-28k9zx.png`} strength={500}>
+        <Parallax bgImage={MakeUrls(homePage.cover)} strength={500}>
           <Box
             height={900}
             width="100%"

@@ -40,3 +40,14 @@ export const getASingleBlogPost = async ({ context }) => {
 
   return data[0];
 };
+
+export const getBlogPostsBySearch = async ({ context }) => {
+  const { publicRuntimeConfig } = getConfig();
+  const slug = context.query.slug;
+  const response = await fetch(
+    `${publicRuntimeConfig.ROOT_API_URL}/blogs?title_contains=${slug}&_sort=commentsCount:DESC&_limit=12`
+  );
+  const data = await response.json();
+
+  return data;
+};
