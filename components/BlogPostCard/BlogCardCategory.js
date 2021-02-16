@@ -23,7 +23,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     padding: 8,
     marginRight: 8,
-    marginBottom: 8,
+
     cursor: "pointer",
   },
 });

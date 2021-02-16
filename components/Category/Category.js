@@ -14,6 +14,7 @@ import { BlogPostCard } from "components/BlogPostCard";
 import { CategoryList } from "components/CategoryList";
 import { SCTypography } from "components/UI";
 import { BlogSideBar } from "components/BlogSideBar";
+import { Search } from "components/BlogSideBar";
 // #validations :
 
 // #material-ui :
@@ -25,8 +26,11 @@ import {
   Grid,
   CircularProgress,
   Button,
+  IconButton,
 } from "@material-ui/core";
 import AutorenewIcon from "@material-ui/icons/Autorenew";
+import SortIcon from "@material-ui/icons/Sort";
+import ViewColumnIcon from "@material-ui/icons/ViewColumn";
 // #other :
 import Masonry from "react-masonry-css";
 
@@ -60,20 +64,49 @@ const Category = (props) => {
 
   return (
     <Grid container>
-      <Grid item xs={4}>
+      {/* <Grid item xs={4}>
         <BlogSideBar />
-      </Grid>
-      <Grid item xs={8}>
+      </Grid> */}
+      <Grid item xs={12}>
         <Grid container>
           <Grid item xs={12}>
             <Box
               width="100%"
               display="flex"
               justifyContent="center"
-              mb={6}
+              mb={1}
+              mt={1}
               flexWrap="wrap"
             >
               <CategoryList categoryList={categoryList} />
+            </Box>
+          </Grid>
+          <Grid item xs={9}>
+            <Box
+              width="100%"
+              display="flex"
+              justifyContent="center"
+              mb={2}
+              mt={1}
+              flexWrap="wrap"
+            >
+              <Search />
+            </Box>
+          </Grid>
+          <Grid item xs={3}>
+            <Box
+              display="flex"
+              justifyContent="flex-end"
+              mb={2}
+              mt={1}
+              flexWrap="wrap"
+            >
+              <IconButton>
+                <SortIcon style={{ color: "white" }} />
+              </IconButton>
+              <IconButton>
+                <ViewColumnIcon style={{ color: "white" }} />
+              </IconButton>
             </Box>
           </Grid>
           <Grid item xs={12}>

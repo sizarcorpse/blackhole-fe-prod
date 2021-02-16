@@ -32,7 +32,7 @@ const Portfolio = (props) => {
   const { classes, portfolios } = props;
   const { publicRuntimeConfig } = getConfig();
   // #handlers : Infinity Scroll
-  let items = 4;
+  let items = 8;
   const { data, error, isValidating, mutate, size, setSize } = useSWRInfinite(
     (index) =>
       `${

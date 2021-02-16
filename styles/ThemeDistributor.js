@@ -48,4 +48,38 @@ export const ThemeDistributor = (theme) => ({
       color: "#6459ff",
     },
   },
+  tryMini: {
+    width: "100%",
+
+    "& img": {
+      width: "100%",
+      height: "auto",
+      justifySelf: "center",
+      textAlign: "center",
+    },
+    "& figure": {
+      width: "100%",
+      margin: "auto",
+    },
+    "& p": {
+      fontSize: "15px",
+      letterSpacing: ".5px",
+
+      fontWeight: "400",
+      textDecoration: "none solid rgb(255, 255, 255)",
+      fontStyle: "normal",
+      fontVariant: "normal",
+      color: "#f8f8f8",
+    },
+    "& a": {
+      fontSize: "16px",
+      letterSpacing: ".5px",
+      wordSpacing: "2px",
+      fontWeight: "500",
+      textDecoration: "none solid rgb(255, 255, 255)",
+      fontStyle: "normal",
+      fontVariant: "normal",
+      color: "#6459ff",
+    },
+  },
 });

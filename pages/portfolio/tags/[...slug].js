@@ -20,6 +20,7 @@ import { withStyles, makeStyles, Box, Grid } from "@material-ui/core";
 
 // #other :
 import { Parallax, Background } from "react-parallax";
+import { SCTypography } from "components/UI";
 
 // #serverSideProps :
 
@@ -42,6 +43,16 @@ const useStyles = makeStyles({
       "linear-gradient(0deg, rgba(0,0,0,1) 5%, rgba(245,244,244,0) 100%)",
   },
   mainContainer: { BackgroundColor: "#000000" },
+
+  details: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%",
+    margin: "auto",
+    padding: "",
+  },
 });
 const Tags = (props) => {
   const { classes, tagDetails, tagList } = props;
@@ -55,7 +66,25 @@ const Tags = (props) => {
             height={600}
             width="100%"
             className={localClasses.parallaxBackground}
-          ></Box>
+          >
+            <Box
+              className={localClasses.details}
+              width={{ xs: "100%", sm: "70%", md: "60%", lg: "50%", xl: "40%" }}
+            >
+              <SCTypography fontSize={42} fontWeight={700} color="white">
+                {tagDetails.name}
+              </SCTypography>
+              <SCTypography
+                fontSize={14}
+                fontWeight={400}
+                color="white"
+                whiteSpace="pre-line"
+                textAlign="center"
+              >
+                {tagDetails.description}
+              </SCTypography>
+            </Box>
+          </Box>
         </Parallax>
       </Grid>
 

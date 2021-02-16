@@ -53,6 +53,13 @@ const useStyles = makeStyles({
     cursor: "pointer",
     color: "#f8f8f8",
   },
+  form: {
+    borderBottom: "1px solid #000000",
+    transition: "border-bottom ease-in-out 250ms",
+    "&:hover": {
+      borderBottom: "1px solid #f8f8f8",
+    },
+  },
 });
 
 const Search = (props) => {
@@ -78,7 +85,7 @@ const Search = (props) => {
   return (
     <Grid
       container
-      justify="space-between"
+      justify="center"
       alignItems="stretch"
       style={{ height: "100%" }}
     >
@@ -89,9 +96,10 @@ const Search = (props) => {
           display="flex"
           justifyContent="center"
           alignItems="flex-end"
+          px={1}
         >
           <Box width="100%">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className={localClasses.form}>
               <Box>
                 <FormControl fullWidth>
                   <TextField
@@ -99,22 +107,20 @@ const Search = (props) => {
                     InputProps={{
                       shrink: "false",
                       autoComplete: "off",
-
-                      /* endAdornment: (
+                      startAdornment: (
                         <InputAdornment position="start">
-                          <BackspaceIcon
+                          <SearchIcon
                             onClick={clearSearchTextValue}
-                            fontSize="small"
+                            fontSize="medium"
                             className={localClasses.icon}
                           />
                         </InputAdornment>
-                      ), */
-                      disableUnderline: true,
+                      ),
                     }}
                     fullWidth
                     name="search"
                     id="search"
-                    placeholder="Search Anything"
+                    /* placeholder="Search Anything" */
                     value={searchText}
                     onChange={handleSearchTextValueChange}
                   />

@@ -16,6 +16,7 @@ import { BlogPostCard } from "components/BlogPostCard";
 import { NoContent } from "components/NoContent";
 import { BlogSideBar } from "components/BlogSideBar";
 import { CategoryList } from "components/CategoryList";
+import { Search } from "components/BlogSideBar";
 // #validations :
 
 // #material-ui :
@@ -25,11 +26,11 @@ import {
   makeStyles,
   Grid,
   Box,
-  Card,
-  Typography,
+  IconButton,
 } from "@material-ui/core";
 import withWidth from "@material-ui/core/withWidth";
-
+import SortIcon from "@material-ui/icons/Sort";
+import ViewColumnIcon from "@material-ui/icons/ViewColumn";
 // #other :
 import Masonry from "react-masonry-css";
 import { Parallax, Background } from "react-parallax";
@@ -62,7 +63,7 @@ const useStyles = makeStyles({
   mainContainer: { BackgroundColor: "#000000" },
 });
 
-const Search = (props) => {
+const SearchPage = (props) => {
   const { classes, blogPosts, width, searchPage, categoryList } = props;
   const localClasses = useStyles();
 
@@ -113,12 +114,12 @@ const Search = (props) => {
         <Grid item xs={2} />
         <Grid item xs={8}>
           <Grid container>
-            <Grid item xs={4}>
+            {/* <Grid item xs={4}>
               <Box width="100%">
                 <BlogSideBar />
               </Box>
-            </Grid>
-            <Grid item xs={8}>
+            </Grid> */}
+            <Grid item xs={12}>
               <Grid container>
                 <Grid item xs={12}>
                   <Box
@@ -129,6 +130,34 @@ const Search = (props) => {
                     flexWrap="wrap"
                   >
                     <CategoryList categoryList={categoryList} />
+                  </Box>
+                </Grid>
+                <Grid item xs={9}>
+                  <Box
+                    width="100%"
+                    display="flex"
+                    justifyContent="center"
+                    mb={2}
+                    mt={1}
+                    flexWrap="wrap"
+                  >
+                    <Search />
+                  </Box>
+                </Grid>
+                <Grid item xs={3}>
+                  <Box
+                    display="flex"
+                    justifyContent="flex-end"
+                    mb={2}
+                    mt={1}
+                    flexWrap="wrap"
+                  >
+                    <IconButton>
+                      <SortIcon style={{ color: "white" }} />
+                    </IconButton>
+                    <IconButton>
+                      <ViewColumnIcon style={{ color: "white" }} />
+                    </IconButton>
                   </Box>
                 </Grid>
                 <Grid item xs={12}>
@@ -165,5 +194,5 @@ export default withWidth()(
       ...ThemeDistributor(theme),
     }),
     { withTheme: true }
-  )(Search)
+  )(SearchPage)
 );

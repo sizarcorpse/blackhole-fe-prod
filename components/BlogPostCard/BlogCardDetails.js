@@ -29,7 +29,7 @@ const BlogCardDetails = (props) => {
     <Box
       aria-label="card-media"
       dangerouslySetInnerHTML={{ __html: `${handleBodyCharLimit(content)}` }}
-      className={classes.try}
+      className={classes.tryMini}
     />
   );
 };

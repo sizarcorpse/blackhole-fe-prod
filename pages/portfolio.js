@@ -33,7 +33,7 @@ import { MakeUrls } from "utils/MakeUrls";
 
 export async function getServerSideProps(context) {
   const page = 1;
-  const limit = 4;
+  const limit = 8;
   const portfolioPage = await getPortfolioPage(context);
   const response = await getAllPortfolio({ context, page, limit });
   const responseList = await getTagList({ context });

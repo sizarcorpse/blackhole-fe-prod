@@ -12,6 +12,7 @@ import { FlexColumn2 } from "utils/FlexColumn";
 import { SCTypography } from "components/UI";
 import { BlogPostCard } from "components/BlogPostCard";
 import { CategoryList } from "components/CategoryList";
+import { Search } from "components/BlogSideBar";
 // #validations :
 
 // #material-ui :
@@ -24,9 +25,11 @@ import {
   CircularProgress,
   Button,
   withWidth,
+  IconButton,
 } from "@material-ui/core";
 import AutorenewIcon from "@material-ui/icons/Autorenew";
-
+import SortIcon from "@material-ui/icons/Sort";
+import ViewColumnIcon from "@material-ui/icons/ViewColumn";
 // #other :
 import Masonry from "react-masonry-css";
 
@@ -62,22 +65,50 @@ const Blog = (props) => {
 
   return (
     <Grid container justify="flex-end">
-      <Grid item xl={4} lg={3} md={3} sm={12} xs={12}>
+      {/* <Grid item xl={4} lg={3} md={3} sm={12} xs={12}>
         <Box width="100%">
           <BlogSideBar />
         </Box>
-      </Grid>
-      <Grid item xl={8} lg={9} md={9} sm={12} xs={12}>
+      </Grid> */}
+      <Grid item xs={12}>
         <Grid container>
           <Grid item xs={12}>
             <Box
               width="100%"
               display="flex"
               justifyContent={width === "xs" ? "space-around" : "center"}
-              mb={6}
+              mb={1}
+              mt={1}
               flexWrap="wrap"
             >
               <CategoryList categoryList={categoryList} />
+            </Box>
+          </Grid>
+          <Grid item xs={9}>
+            <Box
+              display="flex"
+              justifyContent="center"
+              mb={2}
+              mt={1}
+              flexWrap="wrap"
+            >
+              <Search />
+            </Box>
+          </Grid>
+          <Grid item xs={3}>
+            <Box
+              display="flex"
+              justifyContent="flex-end"
+              mb={2}
+              mt={1}
+              flexWrap="wrap"
+            >
+              <IconButton>
+                <SortIcon style={{ color: "white" }} />
+              </IconButton>
+              <IconButton>
+                <ViewColumnIcon style={{ color: "white" }} />
+              </IconButton>
             </Box>
           </Grid>
           <Grid item xs={12}>

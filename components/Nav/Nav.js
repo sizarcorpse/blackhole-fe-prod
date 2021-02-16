@@ -110,7 +110,7 @@ const Nav = (props) => {
                             >
                               <SCTypography
                                 variant="h3"
-                                fontSize={18}
+                                fontSize={16}
                                 color="white"
                                 fontWeight={400}
                               >
