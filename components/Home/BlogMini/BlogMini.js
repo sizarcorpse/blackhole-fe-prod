@@ -1,10 +1,17 @@
+// #next :
+// import getConfig from 'next/config';
+// import {useRouter} from 'next/router';
+// import Link from 'next/link';
+// import Image from 'next/image';
+// import useSWR, { trigger, mutate } from 'swr';
+// #contexts :
+// import { useAuth } from 'contexts/AuthContext';
 // #hooks :
-import { MakeUrls } from "utils/MakeUrls";
 
 // #components :
 import { SCTypography } from "components/UI";
-import { PortfolioCard } from "components/PortfolioCard";
-import { HomePortfolio404 } from "components/NoContent";
+import { BlogPostCard } from "components/BlogPostCard";
+import { HomeBlog404 } from "components/NoContent";
 // #validations :
 
 // #material-ui :
@@ -16,9 +23,8 @@ import {
   Box,
   withWidth,
 } from "@material-ui/core";
-import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
+
 // #other :
-import Masonry from "react-masonry-css";
 import SwiperCore, {
   Navigation,
   Pagination,
@@ -41,9 +47,8 @@ const useStyles = makeStyles({
 });
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Mousewheel]);
-
-const PortfolioMini = (props) => {
-  const { classes, width, homePortfolio: portfolios } = props;
+const BlogMini = (props) => {
+  const { classes, homeBlog: Blog, width } = props;
 
   const localClasses = useStyles();
 
@@ -57,7 +62,7 @@ const PortfolioMini = (props) => {
             width={{ xs: "100%", sm: "70%", md: "60%", lg: "50%", xl: "40%" }}
           >
             <SCTypography fontSize={42} fontWeight={700} color="white">
-              Recent Works
+              Recent Blogs
             </SCTypography>
             <SCTypography
               fontSize={14}
@@ -74,22 +79,21 @@ const PortfolioMini = (props) => {
             </SCTypography>
           </Box>
 
-          {!portfolios || portfolios.length === 0 ? (
+          {!Blog || Blog.length === 0 ? (
             <Box width="100%" display="flex" my={2} height={640}>
-              <HomePortfolio404 />
+              <HomeBlog404 />
             </Box>
           ) : (
             <Box width="100%" display="flex" minWidth={1920} my={2}>
               <Swiper
                 spaceBetween={0}
-                slidesPerView={width === "xs" ? 1 : 4}
+                slidesPerView={width === "xs" ? 1 : 2}
                 direction="horizontal"
                 mousewheel
-                pagination={{ dynamicBullets: true }}
               >
-                {portfolios.map((portfolio, i) => (
+                {Blog.map((post, i) => (
                   <SwiperSlide key={i}>
-                    <PortfolioCard portfolio={portfolio} size="large" />
+                    <BlogPostCard post={post} />
                   </SwiperSlide>
                 ))}
               </Swiper>
@@ -103,8 +107,9 @@ const PortfolioMini = (props) => {
 export default withWidth()(
   withStyles(
     (theme) => ({
+      //   ...(theme)
       ...ThemeDistributor(theme),
     }),
     { withTheme: true }
-  )(PortfolioMini)
+  )(BlogMini)
 );

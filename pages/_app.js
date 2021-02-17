@@ -21,6 +21,10 @@ import theme from "styles/theme";
 
 // #other :
 import "styles/styles.css";
+import "swiper/swiper.scss";
+import "swiper/components/navigation/navigation.scss";
+import "swiper/components/pagination/pagination.scss";
+import "swiper/components/scrollbar/scrollbar.scss";
 
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";

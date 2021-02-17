@@ -38,3 +38,12 @@ export const getContactPage = async ({ context }) => {
   const data = await response.json();
   return data;
 };
+
+export const getAboutPage = async ({ context }) => {
+  const { publicRuntimeConfig } = getConfig();
+  const response = await fetch(
+    `${publicRuntimeConfig.ROOT_API_URL}/about-page`
+  );
+  const data = await response.json();
+  return data;
+};

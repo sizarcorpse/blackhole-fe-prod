@@ -51,3 +51,12 @@ export const getBlogPostsBySearch = async ({ context }) => {
 
   return data;
 };
+
+export const getBlogShownInHome = async ({ context }) => {
+  const { publicRuntimeConfig } = getConfig();
+  const response = await fetch(
+    `${publicRuntimeConfig.ROOT_API_URL}/blogs?showOnHome=true`
+  );
+  const data = await response.json();
+  return data;
+};

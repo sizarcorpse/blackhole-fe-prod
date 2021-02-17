@@ -1,11 +1,7 @@
 // #next :
-// import getConfig from 'next/config';
-// import {useRouter} from 'next/router';
-// import Link from 'next/link';
-// import Image from 'next/image';
-// import useSWR, { trigger, mutate } from 'swr';
+
 // #contexts :
-// import { useAuth } from 'contexts/AuthContext';
+
 // #hooks :
 
 // #components :
@@ -114,8 +110,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Contact = (props) => {
   const { classes, width } = props;
-  // const { currentUser } = useAuth();
-  // const { publicRuntimeConfig } = getConfig();
   const localClasses = useStyles();
 
   return (
@@ -143,7 +137,7 @@ const Contact = (props) => {
           </SCTypography>
           <SCTypography
             variant="h2"
-            fontSize={24}
+            fontSize={18}
             fontWeight={400}
             lineHeight={1.5}
             color="white"

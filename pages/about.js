@@ -1,9 +1,7 @@
 // #hooks :
-import { getContactPage } from "actions/FetchPage";
+import { getAboutPage } from "actions/FetchPage";
 import { MakeUrls } from "utils/MakeUrls";
 
-// #components :
-import { Contact } from "components/Contact";
 // #validations :
 
 // #material-ui :
@@ -21,10 +19,10 @@ import {
 import { Parallax, Background } from "react-parallax";
 
 export async function getServerSideProps(context) {
-  const contactPage = await getContactPage(context);
+  const aboutPage = await getAboutPage(context);
 
   return {
-    props: { contactPage },
+    props: { aboutPage },
   };
 }
 
@@ -37,14 +35,15 @@ const useStyles = makeStyles({
   mainContainer: { BackgroundColor: "#000000" },
 });
 
-const ContactPage = (props) => {
-  const { classes, width, contactPage } = props;
+const AboutPage = (props) => {
+  const { classes, width, aboutPage } = props;
   const localClasses = useStyles();
 
+  console.log(aboutPage.cover);
   return (
     <Grid container className={localClasses.root}>
       <Grid item xs={12} aria-label="background-cover">
-        <Parallax bgImage={MakeUrls(contactPage.cover)} strength={500}>
+        <Parallax bgImage={MakeUrls(aboutPage.cover)} strength={500}>
           <Box
             height={500}
             width="100%"
@@ -56,7 +55,7 @@ const ContactPage = (props) => {
       <Grid container className={localClasses.mainContainer}>
         <Grid item xl={2} lg={1} md={false} sm={false} xs={false} />
         <Grid item xl={8} lg={10} md={12} sm={12} xs={12}>
-          <Contact />
+          <p>hi</p>
         </Grid>
         <Grid item xl={2} lg={1} md={false} sm={false} xs={false} />
       </Grid>
@@ -69,5 +68,5 @@ export default withWidth()(
       ...ThemeDistributor(theme),
     }),
     { withTheme: true }
-  )(ContactPage)
+  )(AboutPage)
 );

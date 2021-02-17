@@ -1,11 +1,9 @@
 // #next :
-// import getConfig from 'next/config';
-// import {useRouter} from 'next/router';
+import { useRouter } from "next/router";
 import Link from "next/link";
-// import Image from 'next/image';
-// import useSWR, { trigger, mutate } from 'swr';
+
 // #contexts :
-// import { useAuth } from 'contexts/AuthContext';
+
 // #hooks :
 
 // #components :
@@ -16,7 +14,7 @@ import { SCTypography } from "components/UI";
 // #material-ui :
 import { ThemeDistributor } from "styles/ThemeDistributor";
 import { withStyles, makeStyles, Box } from "@material-ui/core";
-
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 // #other :
 import { motion } from "framer-motion";
 
@@ -35,9 +33,8 @@ const useStyles = makeStyles({
 
 const TagList = (props) => {
   const { classes, tagList } = props;
-  // const { currentUser } = useAuth();
-  // const { publicRuntimeConfig } = getConfig();
   const localClasses = useStyles();
+  const router = useRouter();
 
   const hoverProps = {
     base: { color: "#f8f8f8" },
@@ -55,6 +52,12 @@ const TagList = (props) => {
             whileHover="hover"
             variants={hoverProps}
           >
+            {router.pathname === "/portfolio" ? (
+              ""
+            ) : (
+              <ArrowBackIosIcon style={{ height: 14, width: 14 }} />
+            )}
+
             <SCTypography variant="h2">Portfolio</SCTypography>
           </motion.div>
         </Box>

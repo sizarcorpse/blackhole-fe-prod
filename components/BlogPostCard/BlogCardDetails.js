@@ -1,13 +1,3 @@
-// #next :
-
-// #contexts :
-
-// #hooks :
-
-// #components :
-
-// #validations :
-
 // #material-ui :
 import { ThemeDistributor } from "styles/ThemeDistributor";
 import { withStyles, Box } from "@material-ui/core";

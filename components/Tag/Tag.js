@@ -87,7 +87,6 @@ const Tag = (props) => {
               setSize(size + 1);
             }}
             disabled={isReachingEnd}
-            style={{ background: "red" }}
           >
             {isLoadingMore ? (
               <CircularProgress />

@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: 8,
+    padding: "0px 8px",
     marginRight: 8,
 
     cursor: "pointer",

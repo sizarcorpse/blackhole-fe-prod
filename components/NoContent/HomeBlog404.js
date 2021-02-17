@@ -9,8 +9,8 @@ import {
 } from "@material-ui/core";
 
 // #other :
-// import Lottie from "react-lottie";
-// import animationData from "utils/lottie/35920-search-system";
+import Lottie from "react-lottie";
+import animationData from "utils/lottie/16294-404-space-error";
 
 const useStyles = makeStyles({
   textBox: { position: "relative", bottom: 90 },
@@ -28,34 +28,39 @@ const useStyles = makeStyles({
   },
 });
 
-const NoContent = (props) => {
+const HomeBlog404 = (props) => {
   const { classes } = props;
 
   const localClasses = useStyles();
 
-  //   const defaultOptions = {
-  //     loop: true,
-  //     autoplay: true,
-  //     animationData: animationData,
-  //     rendererSettings: {
-  //       preserveAspectRatio: "xMidYMid slice",
-  //     },
-  //   };
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
 
   return (
     <Grid container components="main" className={localClasses.backgroundColor}>
       <Grid item xs={12}>
-        <Box width={"100%"} display="flex" justifyContent="center">
+        <Box
+          width={"100%"}
+          display="flex"
+          justifyContent="center"
+          style={{ background: "#030305" }}
+        >
           <Box
-            height={500}
-            width={600}
+            height={640}
+            width={700}
             display="flex"
             justifyContent="center"
             alignItems="center"
             flexDirection="column"
           >
-            {/* <Lottie options={defaultOptions} height={500} width={500} /> */}
-            <Box className={localClasses.textBox}>
+            <Lottie options={defaultOptions} height={280} width={520} />
+            {/* <Box className={localClasses.textBox}>
               <Typography className={localClasses.text}>
                 Nothing you looking for..
               </Typography>
@@ -66,7 +71,7 @@ const NoContent = (props) => {
               >
                 stay safe
               </Typography>
-            </Box>
+            </Box> */}
           </Box>
         </Box>
       </Grid>
@@ -78,4 +83,4 @@ export default withStyles(
     ...ThemeDistributor(theme),
   }),
   { withTheme: true }
-)(NoContent);
+)(HomeBlog404);

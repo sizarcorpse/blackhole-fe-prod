@@ -9,10 +9,11 @@
 
 // #hooks :
 import { getPortfolioShownInHome } from "actions/FetchPortfolio";
+import { getBlogShownInHome } from "actions/FetchBlog";
 import { getHomePage } from "actions/FetchPage";
 import { MakeUrls } from "utils/MakeUrls";
 // #components :
-import { PortfolioMini } from "components/Home";
+import { PortfolioMini, BlogMini } from "components/Home";
 // #validations :
 
 // #material-ui :
@@ -32,9 +33,10 @@ import { Parallax, Background } from "react-parallax";
 
 export async function getServerSideProps(context) {
   const homePortfolio = await getPortfolioShownInHome(context);
+  const homeBlog = await getBlogShownInHome(context);
   const homePage = await getHomePage(context);
 
-  return { props: { homePortfolio, homePage } };
+  return { props: { homePage, homePortfolio, homeBlog } };
 }
 
 const useStyles = makeStyles({
@@ -47,7 +49,7 @@ const useStyles = makeStyles({
 });
 
 const Home = (props) => {
-  const { classes, homePortfolio, homePage } = props;
+  const { classes, homePortfolio, homePage, homeBlog } = props;
   // const { currentUser } = useAuth();
   // const { publicRuntimeConfig } = getConfig();
   const localClasses = useStyles();
@@ -67,7 +69,9 @@ const Home = (props) => {
       <Grid container className={localClasses.mainContainer}>
         <Grid item xs={12} xl={12}>
           <PortfolioMini homePortfolio={homePortfolio} />
-          <Box height={500} />
+        </Grid>
+        <Grid item xs={12} xl={12}>
+          <BlogMini homeBlog={homeBlog} />
         </Grid>
       </Grid>
     </Grid>

@@ -104,7 +104,6 @@ const Tags = (props) => {
           <Box width="100%" display="flex" minHeight="600">
             <Tag tagDetails={tagDetails} />
           </Box>
-          <Box height={500} />
         </Grid>
       </Grid>
     </Grid>

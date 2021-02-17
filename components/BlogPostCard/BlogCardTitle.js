@@ -33,8 +33,8 @@ const BlogCardTitle = (props) => {
           >
             {title}
           </SCTypography>
-          <SCTypography variant="h2" fontSize={12} color="white">
-            {formatDistanceToNow(new Date(createdAt))} ago
+          <SCTypography variant="h2" fontSize={12} color="grey">
+            Created {formatDistanceToNow(new Date(createdAt))} ago
           </SCTypography>
         </Box>
       </a>

@@ -62,7 +62,7 @@ const PortfolioPage = (props) => {
       <Grid item xs={12} xl={12} aria-label="background-cover">
         <Parallax bgImage={MakeUrls(portfolioPage.cover)} strength={500}>
           <Box
-            height={900}
+            height={600}
             width="100%"
             className={localClasses.parallaxBackground}
           ></Box>
@@ -85,7 +85,6 @@ const PortfolioPage = (props) => {
           <Box width="100%" display="flex">
             <Portfolio portfolios={portfolios} />
           </Box>
-          <Box height={500} />
         </Grid>
       </Grid>
     </Grid>
